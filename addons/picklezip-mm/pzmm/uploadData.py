@@ -24,10 +24,15 @@ class ModelImport():
             Name of the host server with a SAS Open Model Manager installation.
         '''
         
-        if host[:7] == 'http://':
+        if host[:8] == 'https://':
+            host = host[8:]
+            self.host = host
+            self.server = 'https://' + host
+
+        elif host[:7] == 'http://':
             host = host[7:]
-        self.host = host
-        self.server = 'http://' + host
+            self.host = host
+            self.server = 'http://' + host
         
     def getAccessToken(self):
         '''
